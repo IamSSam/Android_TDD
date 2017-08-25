@@ -13,12 +13,20 @@ public class StockTest {
     public void storck_init_setFields() {
         Stock stock = new Stock("0001", "삼성전자", 10000, 100, 10, true, false);
         Assert.assertNotNull(stock);
-        Assert.assertEquals("0001", stock.stockCode);
-        Assert.assertEquals("삼성전자", stock.name);
-        Assert.assertEquals(10000, stock.currentPrice);
-        Assert.assertEquals(100, stock.priceDiff);
-        Assert.assertEquals(10, stock.rateDiff);
-        Assert.assertEquals(true, stock.isPriceUp);
-        Assert.assertEquals(false, stock.isPriceKeep);
+        Assert.assertEquals("0001", stock.getStockCode());
+        Assert.assertEquals("삼성전자", stock.getName());
+        Assert.assertEquals(10000, stock.getCurrentPrice(), 0.001);
+        Assert.assertEquals(100, stock.getPriceDiff(), 0.001);
+        Assert.assertEquals(10, stock.getRateDiff(), 0.001);
+        Assert.assertEquals(true, stock.isPriceUp());
+        Assert.assertEquals(false, stock.isPriceKeep());
+
+    }
+
+    @Test
+    public void stock_setQuantity_getValue() {
+        Stock stock = new Stock("00001", "삼성전자", 10000, 100, 10, true, false);
+        stock.setQuantity(10);
+        Assert.assertEquals(15000 * 10, stock.getValue(), 0.001);
     }
 }
